@@ -1,7 +1,9 @@
-﻿namespace MyTasks.Application.MyTasks.Queries.GetTaskList
+﻿using System;
+using MediatR;
+
+namespace MyTasks.Application.MyTasks.Queries.GetTaskList
 {
-    public class GetTaskListQuery
+    public class GetTaskListQuery : IRequest<TaskListVm>
     {
-        
     }
 }

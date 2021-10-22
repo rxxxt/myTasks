@@ -21,7 +21,7 @@ namespace MyTasks.Application.MyTasks.Commands.DeleteTask
             var entity = await _dbContext.MyTasks
                 .FindAsync(new object[] { request.Id }, cancellationToken);
 
-            if (entity == null || entity.Id != request.Id)
+            if (entity == null)
             {
                 throw new NotFoundException(nameof(Task), request.Id);
             }
