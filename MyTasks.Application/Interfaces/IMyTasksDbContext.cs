@@ -7,7 +7,7 @@ namespace MyTasks.Application.Interfaces
 {
     public interface IMyTasksDbContext
     {
-        DbSet<Task> Notes { get; set; }
+        DbSet<Task> MyTasks { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

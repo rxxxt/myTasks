@@ -7,7 +7,7 @@ namespace MyTasks.Persistence
 {
     public class MyTasksDbContext: DbContext, IMyTasksDbContext
     {
-        public DbSet<Task> Notes { get; set; }
+        public DbSet<Task> MyTasks { get; set; }
 
         public MyTasksDbContext(DbContextOptions<MyTasksDbContext> options)
             : base(options) { }
