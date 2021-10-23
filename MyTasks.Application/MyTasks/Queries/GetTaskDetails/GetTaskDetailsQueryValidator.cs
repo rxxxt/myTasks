@@ -1,7 +1,14 @@
-﻿namespace MyTasks.Application.MyTasks.Queries.GetTaskDescription
+﻿using System;
+using FluentValidation;
+using MyTasks.Application.MyTasks.Queries.GetTaskDetails;
+
+namespace MyTasks.Application.MyTasks.Queries.GetTaskDetails
 {
-    public class GetTaskDescriptionQueryValidator
+    public class GetTaskDetailsQueryValidator : AbstractValidator<GetTaskDetailsQuery>
     {
-        
+        public GetTaskDetailsQueryValidator()
+        {
+            RuleFor(task => task.Id).NotEqual(Guid.Empty);
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace MyTasks.WebApi.Controllers
         /// <response code="200">Success</response>
         /// <response code="401">If the user in unauthorized</response>
         [HttpGet("{id}")]
-        [Authorize]
+       // [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<TaskDetailsVm>> Get(Guid id)
@@ -89,7 +89,7 @@ namespace MyTasks.WebApi.Controllers
         /// <response code="201">Success</response>
         /// <response code="401">If the user is unauthorized</response>
         [HttpPost]
-        [Authorize]
+       // [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateTaskDto createTaskDto)
@@ -114,7 +114,7 @@ namespace MyTasks.WebApi.Controllers
         /// <response code="204">Success</response>
         /// <response code="401">If the user is unauthorized</response>
         [HttpPut]
-        [Authorize]
+       // [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
@@ -136,7 +136,7 @@ namespace MyTasks.WebApi.Controllers
         /// <response code="204">Success</response>
         /// <response code="401">If the user is unauthorized</response>
         [HttpDelete("{id}")]
-        [Authorize]
+      //  [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Delete(Guid id)

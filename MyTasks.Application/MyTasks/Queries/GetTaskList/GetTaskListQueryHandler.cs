@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;

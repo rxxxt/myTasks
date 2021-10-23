@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-//using FluentValidation;
-//using MyTasks.Application.Common.Behaviors;
+using FluentValidation;
+using MyTasks.Application.Common.Behaviors;
 
 namespace MyTasks.Application
 {
@@ -12,12 +12,12 @@ namespace MyTasks.Application
             this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
-          //  services
-          //      .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
-          //  services.AddTransient(typeof(IPipelineBehavior<,>),
-          //      typeof(ValidationBehavior<,>));
-          //  services.AddTransient(typeof(IPipelineBehavior<,>),
-          //      typeof(LoggingBehavior<,>));
+            services
+                .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehavior<,>));
+            //services.AddTransient(typeof(IPipelineBehavior<,>),
+            //    typeof(LoggingBehavior<,>));
             return services;
         }
     }
