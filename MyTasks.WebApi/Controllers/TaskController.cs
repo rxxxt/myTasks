@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using MyTasks.Application.MyTasks.Queries.GetTaskList;
@@ -11,13 +10,9 @@ using MyTasks.Application.MyTasks.Commands.UpdateTask;
 using MyTasks.Application.MyTasks.Commands.DeleteTask;
 using MyTasks.WebApi.Models;
 
-//using MyTasks.WebApi.Models;
-
 namespace MyTasks.WebApi.Controllers
 {
-    //[ApiVersion("1.0")]
-    //[Produces("application/json")]
-    //[Route("api/{version:apiVersion}/[controller]")]
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class TaskController : BaseController
     {
@@ -26,19 +21,16 @@ namespace MyTasks.WebApi.Controllers
         public TaskController(IMapper mapper) => _mapper = mapper;
 
         /// <summary>
-        /// Gets the list of notes
+        /// Gets the list of my tasks
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// GET /note
+        /// GET /task
         /// </remarks>
-        /// <returns>Returns NoteListVm</returns>
+        /// <returns>Returns TaskListVm</returns>
         /// <response code="200">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpGet]
-        //[Authorize]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<TaskListVm>> GetAll()
         {
             var query = new GetTaskListQuery
@@ -49,20 +41,17 @@ namespace MyTasks.WebApi.Controllers
         }
 
         /// <summary>
-        /// Gets the note by id
+        /// Gets the task by id
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// GET /note/D34D349E-43B8-429E-BCA4-793C932FD580
+        /// GET /task/D34D349E-43B8-429E-BCA4-793C932FD580
         /// </remarks>
-        /// <param name="id">Note id (guid)</param>
-        /// <returns>Returns NoteDetailsVm</returns>
+        /// <param name="id">Task id (guid)</param>
+        /// <returns>Returns TaskDetailsVm</returns>
         /// <response code="200">Success</response>
-        /// <response code="401">If the user in unauthorized</response>
         [HttpGet("{id}")]
-       // [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<TaskDetailsVm>> Get(Guid id)
         {
             var query = new GetTaskDetailsQuery
@@ -74,24 +63,22 @@ namespace MyTasks.WebApi.Controllers
         }
 
         /// <summary>
-        /// Creates the note
+        /// Creates the task
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// POST /note
+        /// POST /task
         /// {
-        ///     title: "note title",
-        ///     details: "note details"
+        ///     type: "task type",
+        ///     description: "task description",
+        ///     completionDate: "2021-10-30T17:00:00Z"
         /// }
         /// </remarks>
-        /// <param name="createNoteDto">CreateNoteDto object</param>
+        /// <param name="createTaskDto">CreateTaskDto object</param>
         /// <returns>Returns id (guid)</returns>
         /// <response code="201">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpPost]
-       // [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateTaskDto createTaskDto)
         {
             var command = _mapper.Map<CreateTaskCommand>(createTaskDto);
@@ -100,23 +87,22 @@ namespace MyTasks.WebApi.Controllers
         }
 
         /// <summary>
-        /// Updates the note
+        /// Updates the task
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// PUT /note
+        /// PUT /task
         /// {
-        ///     title: "updated note title"
+        ///     type: "updated task type",
+        ///     description: "updated task description",
+        ///     completionDate: "2021-10-30T17:00:00Z"
         /// }
         /// </remarks>
-        /// <param name="updateNoteDto">UpdateNoteDto object</param>
+        /// <param name="updateTaskDto">UpdateTaskDto object</param>
         /// <returns>Returns NoContent</returns>
         /// <response code="204">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpPut]
-       // [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
             var command = _mapper.Map<UpdateTaskCommand>(updateTaskDto);
@@ -125,20 +111,17 @@ namespace MyTasks.WebApi.Controllers
         }
 
         /// <summary>
-        /// Deletes the note by id
+        /// Deletes the task by id
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// DELETE /note/88DEB432-062F-43DE-8DCD-8B6EF79073D3
+        /// DELETE /task/88DEB432-062F-43DE-8DCD-8B6EF79073D3
         /// </remarks>
-        /// <param name="id">Id of the note (guid)</param>
+        /// <param name="id">Id of the task (guid)</param>
         /// <returns>Returns NoContent</returns>
         /// <response code="204">Success</response>
-        /// <response code="401">If the user is unauthorized</response>
         [HttpDelete("{id}")]
-      //  [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var command = new DeleteTaskCommand

@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//using Serilog;
-//using Serilog.Events;
 using System;
+using System.IO;
 using MyTasks.Persistence;
 
 namespace MyTasks.WebApi
@@ -24,7 +23,8 @@ namespace MyTasks.WebApi
                 }
                 catch (Exception exception)
                 {
-
+                    Console.Error.WriteLine("An error occurred while app initialization");
+                    Console.Error.WriteLine(exception.Message);
                 }
             }
 

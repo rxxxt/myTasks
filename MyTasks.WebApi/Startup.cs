@@ -1,10 +1,6 @@
-using System;
 using System.Reflection;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +8,7 @@ using MyTasks.Application.Common.Mappings;
 using MyTasks.Application.Interfaces;
 using MyTasks.Application;
 using MyTasks.Persistence;
+using MyTasks.WebApi.Middleware;
 
 namespace MyTasks.WebApi
 {
@@ -42,6 +39,8 @@ namespace MyTasks.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+            
+            services.AddSwaggerGen();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,9 +49,15 @@ namespace MyTasks.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "MyTasks API");
+            });
 
+            app.UseCustomExceptionHandler();
             app.UseRouting();
-            app.UseHttpsRedirection();
             app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
