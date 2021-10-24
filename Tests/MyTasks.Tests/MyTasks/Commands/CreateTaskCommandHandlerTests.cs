@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyTasks.Application.MyTasks.Commands.CreateTask;
+using MyTasks.Domain;
 using MyTasks.Tests.Common;
 using Xunit;
+using Task = System.Threading.Tasks.Task;
 
 namespace MyTasks.Tests.MyTasks.Commands
 {
@@ -16,14 +17,14 @@ namespace MyTasks.Tests.MyTasks.Commands
             // Arrange
             var handler = new CreateTaskCommandHandler(Context);
             var taskDescription = "task description";
-            var taskType = "task type";
+            var taskType = TaskType.Personal;
 
             // Act
             var taskId = await handler.Handle(
                 new CreateTaskCommand
                 {
                     Description = taskDescription,
-                    Type = taskType,
+                    TaskType = taskType,
                     DateDue = DateTime.Today
                 },
                 CancellationToken.None);
@@ -32,7 +33,7 @@ namespace MyTasks.Tests.MyTasks.Commands
             Assert.NotNull(
                 await Context.MyTasks.SingleOrDefaultAsync(task =>
                     task.Id == taskId && task.Description == taskDescription &&
-                    task.Type == taskType));
+                    task.TaskType == taskType));
         }
     }
 }

@@ -2,13 +2,14 @@
 using System;
 using MyTasks.Application.Common.Mappings;
 using MyTasks.Application.MyTasks.Commands.UpdateTask;
+using MyTasks.Domain;
 
 namespace MyTasks.WebApi.Models
 {
     public class UpdateTaskDto : IMapWith<UpdateTaskCommand>
     {
         public Guid Id { get; set; }
-        public string Type { get; set; }
+        public TaskType TaskType { get; set; }
         public string Description { get; set; }
         public DateTime DateDue { get; set; }
 
@@ -17,8 +18,8 @@ namespace MyTasks.WebApi.Models
             profile.CreateMap<UpdateTaskDto, UpdateTaskCommand>()
                 .ForMember(taskCommand => taskCommand.Id,
                     opt => opt.MapFrom(taskDto => taskDto.Id))
-                .ForMember(taskCommand => taskCommand.Type,
-                    opt => opt.MapFrom(taskDto => taskDto.Type))
+                .ForMember(taskCommand => taskCommand.TaskType,
+                    opt => opt.MapFrom(taskDto => taskDto.TaskType))
                 .ForMember(taskCommand => taskCommand.Description,
                     opt => opt.MapFrom(taskDto => taskDto.Description))
                 .ForMember(taskCommand => taskCommand.DateDue,

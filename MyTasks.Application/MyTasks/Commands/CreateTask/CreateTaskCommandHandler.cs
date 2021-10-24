@@ -21,7 +21,7 @@ namespace MyTasks.Application.MyTasks.Commands.CreateTask
             var task = new Task
             {
                 Id = Guid.NewGuid(),
-                Type = request.Type,
+                TaskType = request.TaskType,
                 Description = request.Description,
                 DateDue = request.DateDue,
                 IsDone = false

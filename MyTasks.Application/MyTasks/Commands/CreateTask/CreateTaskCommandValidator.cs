@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using MyTasks.Domain;
 
 namespace MyTasks.Application.MyTasks.Commands.CreateTask
 {
@@ -8,11 +9,11 @@ namespace MyTasks.Application.MyTasks.Commands.CreateTask
         public CreateTaskCommandValidator()
         {
             RuleFor(createTaskCommand =>
-                createTaskCommand.Type).NotEmpty().MaximumLength(25);
+                createTaskCommand.TaskType).Must(type => Enum.IsDefined(typeof(TaskType), type));
             RuleFor(createTaskCommand =>
                 createTaskCommand.Description).NotEmpty().MaximumLength(100);
             RuleFor(updateTaskCommand => updateTaskCommand.DateDue)
-               .NotEmpty().Must(DateDue => DateDue > DateTime.Now);
+               .NotEmpty().Must(dateDue => dateDue > DateTime.Now);
         }
     }
 }

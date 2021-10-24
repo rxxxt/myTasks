@@ -21,7 +21,7 @@ namespace MyTasks.Tests.Common
                 new Task
                 {
                     Id = Guid.Parse("A6BB65BB-5AC2-4AFA-8A28-2616F675B825"),
-                    Type = "Type1",
+                    TaskType = TaskType.Personal,
                     Description = "Description1",
                     DateDue = DateTime.Today,
                     IsDone = false
@@ -29,7 +29,7 @@ namespace MyTasks.Tests.Common
                 new Task
                 {
                     Id = Guid.Parse("909F7C29-891B-4BE1-8504-21F84F262084"),
-                    Type = "Type2",
+                    TaskType = TaskType.Work,
                     Description = "Description2",
                     DateDue = DateTime.Today,
                     IsDone = false
@@ -37,7 +37,7 @@ namespace MyTasks.Tests.Common
                 new Task
                 {
                     Id = TaskIdForDelete,
-                    Type = "Type3",
+                    TaskType = TaskType.Personal,
                     Description = "Description3",
                     DateDue = DateTime.Today,
                     IsDone = false
@@ -45,7 +45,7 @@ namespace MyTasks.Tests.Common
                 new Task
                 {
                     Id = TaskIdForUpdate,
-                    Type = "Type4",
+                    TaskType = TaskType.Work,
                     Description = "Description4",
                     DateDue = DateTime.Today,
                     IsDone = false

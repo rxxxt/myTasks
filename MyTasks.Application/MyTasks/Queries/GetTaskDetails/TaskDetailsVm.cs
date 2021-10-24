@@ -16,7 +16,7 @@ namespace MyTasks.Application.MyTasks.Queries.GetTaskDetails
         {
             profile.CreateMap<Task, TaskDetailsVm>()
                 .ForMember(taskVm => taskVm.Type,
-                    opt => opt.MapFrom(task => task.Type))
+                    opt => opt.MapFrom(task => task.TaskType.ToString()))
                 .ForMember(taskVm => taskVm.Description,
                     opt => opt.MapFrom(task => task.Description))
                 .ForMember(taskVm => taskVm.DateDue,

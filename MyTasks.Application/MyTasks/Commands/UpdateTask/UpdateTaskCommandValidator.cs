@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using MyTasks.Domain;
 
 namespace MyTasks.Application.MyTasks.Commands.UpdateTask
 {
@@ -8,10 +9,10 @@ namespace MyTasks.Application.MyTasks.Commands.UpdateTask
         public UpdateTaskCommandValidator()
         {
             RuleFor(updateTaskCommand => updateTaskCommand.Id).NotEqual(Guid.Empty);
-            RuleFor(createTaskCommand =>
-                createTaskCommand.Type).NotEmpty().MaximumLength(25);
-            RuleFor(createTaskCommand =>
-                createTaskCommand.Description).NotEmpty().MaximumLength(100);
+            RuleFor(updateTaskCommand =>
+                updateTaskCommand.TaskType).Must(type => Enum.IsDefined(typeof(TaskType), type));
+            RuleFor(updateTaskCommand =>
+                updateTaskCommand.Description).NotEmpty().MaximumLength(100);
             RuleFor(updateTaskCommand => updateTaskCommand.DateDue)
                 .NotEmpty().Must(dateDue => dateDue > DateTime.Now);
         }

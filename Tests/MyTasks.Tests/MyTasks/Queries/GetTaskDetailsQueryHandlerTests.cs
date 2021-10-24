@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using MyTasks.Application.MyTasks.Queries.GetTaskDetails;
+using MyTasks.Domain;
 using MyTasks.Persistence;
 using MyTasks.Tests.Common;
 using Shouldly;
 using Xunit;
+using Task = System.Threading.Tasks.Task;
 
 namespace MyTasks.Tests.MyTasks.Queries
 {
@@ -39,7 +40,7 @@ namespace MyTasks.Tests.MyTasks.Queries
             // Assert
             result.ShouldBeOfType<TaskDetailsVm>();
             result.Description.ShouldBe("Description2");
-            result.Type.ShouldBe("Type2");
+            result.Type.ShouldBe(TaskType.Work.ToString());
             result.DateDue.ShouldBe(DateTime.Today);
             result.IsDone.ShouldBe(false);
         }
