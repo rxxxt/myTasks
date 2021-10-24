@@ -23,7 +23,7 @@ namespace MyTasks.Tests.Common
                     Id = Guid.Parse("A6BB65BB-5AC2-4AFA-8A28-2616F675B825"),
                     Type = "Type1",
                     Description = "Description1",
-                    CompletionDate = DateTime.Today,
+                    DateDue = DateTime.Today,
                     IsDone = false
                 },
                 new Task
@@ -31,7 +31,7 @@ namespace MyTasks.Tests.Common
                     Id = Guid.Parse("909F7C29-891B-4BE1-8504-21F84F262084"),
                     Type = "Type2",
                     Description = "Description2",
-                    CompletionDate = DateTime.Today,
+                    DateDue = DateTime.Today,
                     IsDone = false
                 },
                 new Task
@@ -39,7 +39,7 @@ namespace MyTasks.Tests.Common
                     Id = TaskIdForDelete,
                     Type = "Type3",
                     Description = "Description3",
-                    CompletionDate = DateTime.Today,
+                    DateDue = DateTime.Today,
                     IsDone = false
                 },
                 new Task
@@ -47,7 +47,7 @@ namespace MyTasks.Tests.Common
                     Id = TaskIdForUpdate,
                     Type = "Type4",
                     Description = "Description4",
-                    CompletionDate = DateTime.Today,
+                    DateDue = DateTime.Today,
                     IsDone = false
                 }
             );

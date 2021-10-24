@@ -40,7 +40,7 @@ namespace MyTasks.Tests.MyTasks.Queries
             result.ShouldBeOfType<TaskDetailsVm>();
             result.Description.ShouldBe("Description2");
             result.Type.ShouldBe("Type2");
-            result.CompletionDate.ShouldBe(DateTime.Today);
+            result.DateDue.ShouldBe(DateTime.Today);
             result.IsDone.ShouldBe(false);
         }
     }

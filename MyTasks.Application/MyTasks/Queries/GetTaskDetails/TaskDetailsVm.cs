@@ -9,7 +9,7 @@ namespace MyTasks.Application.MyTasks.Queries.GetTaskDetails
     {
         public string Type { get; set; }
         public string Description { get; set; }
-        public DateTime CompletionDate { get; set; }
+        public DateTime DateDue { get; set; }
         public bool IsDone { get; set; }
         
         public void Mapping(Profile profile)
@@ -19,8 +19,8 @@ namespace MyTasks.Application.MyTasks.Queries.GetTaskDetails
                     opt => opt.MapFrom(task => task.Type))
                 .ForMember(taskVm => taskVm.Description,
                     opt => opt.MapFrom(task => task.Description))
-                .ForMember(taskVm => taskVm.CompletionDate,
-                    opt => opt.MapFrom(task => task.CompletionDate))
+                .ForMember(taskVm => taskVm.DateDue,
+                    opt => opt.MapFrom(task => task.DateDue))
                 .ForMember(taskVm => taskVm.IsDone,
                     opt => opt.MapFrom(task => task.IsDone));
         }

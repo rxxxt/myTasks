@@ -71,7 +71,7 @@ namespace MyTasks.WebApi.Controllers
         /// {
         ///     type: "task type",
         ///     description: "task description",
-        ///     completionDate: "2021-10-30T17:00:00Z"
+        ///     dateDue: "2021-10-30T17:00:00Z"
         /// }
         /// </remarks>
         /// <param name="createTaskDto">CreateTaskDto object</param>
@@ -95,7 +95,7 @@ namespace MyTasks.WebApi.Controllers
         /// {
         ///     type: "updated task type",
         ///     description: "updated task description",
-        ///     completionDate: "2021-10-30T17:00:00Z"
+        ///     dateDue: "2021-10-30T17:00:00Z"
         /// }
         /// </remarks>
         /// <param name="updateTaskDto">UpdateTaskDto object</param>

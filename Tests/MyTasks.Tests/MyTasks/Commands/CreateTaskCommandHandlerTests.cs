@@ -24,7 +24,7 @@ namespace MyTasks.Tests.MyTasks.Commands
                 {
                     Description = taskDescription,
                     Type = taskType,
-                    CompletionDate = DateTime.Today
+                    DateDue = DateTime.Today
                 },
                 CancellationToken.None);
 

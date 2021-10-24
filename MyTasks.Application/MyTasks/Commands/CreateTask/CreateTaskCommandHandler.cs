@@ -23,7 +23,7 @@ namespace MyTasks.Application.MyTasks.Commands.CreateTask
                 Id = Guid.NewGuid(),
                 Type = request.Type,
                 Description = request.Description,
-                CompletionDate = request.CompletionDate,
+                DateDue = request.DateDue,
                 IsDone = false
             };
 

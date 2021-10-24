@@ -30,7 +30,7 @@ namespace MyTasks.Application.MyTasks.Commands.UpdateTask
 
             entity.Description = request.Description;
             entity.Type = request.Type;
-            entity.CompletionDate = request.CompletionDate;
+            entity.DateDue = request.DateDue;
             entity.IsDone = request.IsDone;
 
             await _dbContext.SaveChangesAsync(cancellationToken);

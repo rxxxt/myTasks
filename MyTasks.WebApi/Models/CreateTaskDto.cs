@@ -11,7 +11,7 @@ namespace MyTasks.WebApi.Models
         [Required]
         public string Type { get; set; }
         public string Description { get; set; }
-        public DateTime CompletionDate { get; set; }
+        public DateTime DateDue { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -20,8 +20,8 @@ namespace MyTasks.WebApi.Models
                     opt => opt.MapFrom(taskDto => taskDto.Type))
                 .ForMember(taskCommand => taskCommand.Description,
                     opt => opt.MapFrom(taskDto => taskDto.Description))
-                .ForMember(taskCommand => taskCommand.CompletionDate,
-                    opt => opt.MapFrom(taskDto => taskDto.CompletionDate));
+                .ForMember(taskCommand => taskCommand.DateDue,
+                    opt => opt.MapFrom(taskDto => taskDto.DateDue));
         }
     }
 }
