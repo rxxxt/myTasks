@@ -11,7 +11,6 @@ namespace MyTasks.WebApi.Models
         public string Type { get; set; }
         public string Description { get; set; }
         public DateTime DateDue { get; set; }
-        public bool IsDone { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -23,9 +22,7 @@ namespace MyTasks.WebApi.Models
                 .ForMember(taskCommand => taskCommand.Description,
                     opt => opt.MapFrom(taskDto => taskDto.Description))
                 .ForMember(taskCommand => taskCommand.DateDue,
-                    opt => opt.MapFrom(taskDto => taskDto.DateDue))
-                .ForMember(taskCommand => taskCommand.IsDone,
-                    opt => opt.MapFrom(taskDto => taskDto.IsDone));
+                    opt => opt.MapFrom(taskDto => taskDto.DateDue));
         }
     }
 }

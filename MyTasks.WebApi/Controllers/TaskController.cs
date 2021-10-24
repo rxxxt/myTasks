@@ -8,6 +8,7 @@ using MyTasks.Application.MyTasks.Queries.GetTaskDetails;
 using MyTasks.Application.MyTasks.Commands.CreateTask;
 using MyTasks.Application.MyTasks.Commands.UpdateTask;
 using MyTasks.Application.MyTasks.Commands.DeleteTask;
+using MyTasks.Application.MyTasks.Commands.MarkTaskCompleted;
 using MyTasks.WebApi.Models;
 
 namespace MyTasks.WebApi.Controllers
@@ -106,6 +107,28 @@ namespace MyTasks.WebApi.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
             var command = _mapper.Map<UpdateTaskCommand>(updateTaskDto);
+            await Mediator.Send(command);
+            return NoContent();
+        }
+        
+        /// <summary>
+        /// Marks the task completed
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// PUT /task/88DEB432-062F-43DE-8DCD-8B6EF79073D3
+        /// </remarks>
+        /// <param name="id">Id of the task (guid)</param>
+        /// <returns>Returns NoContent</returns>
+        /// <response code="204">Success</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var command = new MarkTaskCompletedCommand
+            {
+                Id = id,
+            };
             await Mediator.Send(command);
             return NoContent();
         }

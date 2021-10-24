@@ -6,17 +6,17 @@ using MyTasks.Application.Interfaces;
 using MyTasks.Application.Common.Exceptions;
 using Task = MyTasks.Domain.Task;
 
-namespace MyTasks.Application.MyTasks.Commands.UpdateTask
+namespace MyTasks.Application.MyTasks.Commands.MarkTaskCompleted
 {
-    public class UpdateTaskCommandHandler
-        : IRequestHandler<UpdateTaskCommand>
+    public class MarkTaskCompletedCommandHandler
+        : IRequestHandler<MarkTaskCompletedCommand>
     {
         private readonly IMyTasksDbContext _dbContext;
 
-        public UpdateTaskCommandHandler(IMyTasksDbContext dbContext) =>
+        public MarkTaskCompletedCommandHandler(IMyTasksDbContext dbContext) =>
             _dbContext = dbContext;
 
-        public async Task<Unit> Handle(UpdateTaskCommand request,
+        public async Task<Unit> Handle(MarkTaskCompletedCommand request,
             CancellationToken cancellationToken)
         {
             var entity =
@@ -27,10 +27,8 @@ namespace MyTasks.Application.MyTasks.Commands.UpdateTask
             {
                 throw new NotFoundException(nameof(Task), request.Id);
             }
-
-            entity.Description = request.Description;
-            entity.Type = request.Type;
-            entity.DateDue = request.DateDue;
+            
+            entity.IsDone = true;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

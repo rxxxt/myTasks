@@ -13,7 +13,7 @@ namespace MyTasks.Application.MyTasks.Commands.UpdateTask
             RuleFor(createTaskCommand =>
                 createTaskCommand.Description).NotEmpty().MaximumLength(100);
             RuleFor(updateTaskCommand => updateTaskCommand.DateDue)
-                .NotEmpty().Must(DateDue => DateDue > DateTime.Now);
+                .NotEmpty().Must(dateDue => dateDue > DateTime.Now);
         }
     }
 }
