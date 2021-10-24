@@ -1,2 +1,4 @@
 # myTasks
-Test assignment for the internship C#
+Test task in C#
+
+
