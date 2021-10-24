@@ -8,12 +8,12 @@ namespace MyTasks.Application.MyTasks.Commands.UpdateTask
         public UpdateTaskCommandValidator()
         {
             RuleFor(updateTaskCommand => updateTaskCommand.Id).NotEqual(Guid.Empty);
-            RuleFor(updateTaskCommand => updateTaskCommand.Description)
-                .NotEmpty().MaximumLength(250);
-            RuleFor(updateTaskCommand => updateTaskCommand.Type)
-                .NotEmpty().MaximumLength(25);
+            RuleFor(createTaskCommand =>
+                createTaskCommand.Type).NotEmpty().MaximumLength(25);
+            RuleFor(createTaskCommand =>
+                createTaskCommand.Description).NotEmpty().MaximumLength(100);
             RuleFor(updateTaskCommand => updateTaskCommand.CompletionDate)
-                .NotEmpty().Must(completionDate => completionDate > DateTime.Now); //TODO: Проверить на корректность =
+                .NotEmpty().Must(completionDate => completionDate > DateTime.Now);
         }
     }
 }

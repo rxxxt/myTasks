@@ -14,7 +14,7 @@ namespace MyTasks.Application.MyTasks.Queries.GetTaskList
         {
             profile.CreateMap<Task, TaskLookupDto>()
                 .ForMember(taskDto => taskDto.Id,
-                    opt => opt.MapFrom(note => note.Id))
+                    opt => opt.MapFrom(task => task.Id))
                 .ForMember(taskDto => taskDto.Description,
                     opt => opt.MapFrom(task => task.Description));
         }

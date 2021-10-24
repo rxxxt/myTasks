@@ -7,7 +7,7 @@ namespace MyTasks.Application.MyTasks.Commands.DeleteTask
     {
         public DeleteTaskCommandValidator()
         {
-            RuleFor(deleteNoteCommand => deleteNoteCommand.Id).NotEqual(Guid.Empty);
+            RuleFor(deleteTaskCommand => deleteTaskCommand.Id).NotEqual(Guid.Empty);
         }
     }
 }

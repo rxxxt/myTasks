@@ -8,9 +8,11 @@ namespace MyTasks.Application.MyTasks.Commands.CreateTask
         public CreateTaskCommandValidator()
         {
             RuleFor(createTaskCommand =>
-                createTaskCommand.Description).NotEmpty().MaximumLength(250);
+                createTaskCommand.Type).NotEmpty().MaximumLength(25);
             RuleFor(createTaskCommand =>
-                createTaskCommand.Id).NotEqual(Guid.Empty);
+                createTaskCommand.Description).NotEmpty().MaximumLength(100);
+            RuleFor(updateTaskCommand => updateTaskCommand.CompletionDate)
+               .NotEmpty().Must(completionDate => completionDate > DateTime.Now);
         }
     }
 }

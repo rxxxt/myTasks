@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentValidation;
-using MyTasks.Application.MyTasks.Queries.GetTaskDetails;
 
 namespace MyTasks.Application.MyTasks.Queries.GetTaskDetails
 {
